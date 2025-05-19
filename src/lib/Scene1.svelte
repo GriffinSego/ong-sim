@@ -3,5 +3,5 @@
 </script>
 
 <div>
-	<img src={danimg} alt="Dan" class="w-12 h-12" />
+	<img src={danimg} alt="Dan" class="w-100 h-100" />
 </div>
