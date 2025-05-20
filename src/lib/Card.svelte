@@ -3,6 +3,7 @@
 	export let id: string;
 	export let callback: Function = () => {};
 	export let selected: boolean = false;
+	export let confirmed: boolean = false;
 	let ephemeralSelected: boolean = false;
 	function handleClick() {
 		ephemeralSelected = !selected;
@@ -23,6 +24,6 @@
 	}
 </script>
 
-<div class="w-48 h-72 relative group cursor-pointer outline ring-1 ring-inset -mt-1 {selected ? 'ring-12 ring-amber-400 animate-pulse -mt-12 z-30' : 'z-10'} transition-all duration-700 ease-in-out" on:click={handleClick} on:mousemove={handleMouseMove} on:mouseleave={handleMouseLeave} style="transform: perspective(1000px) rotateX({rotateX}deg) rotateY({rotateY}deg); transition: transform 0.1s ease-out;">
+<div class="w-48 h-72 relative group cursor-pointer outline ring-1 ring-inset {selected ? (confirmed ? '-mt-96' : '-mt-12') : '-mt-1'} {selected ? 'ring-12 ring-amber-400 animate-pulse z-30' : 'z-10'} transition-all duration-700 ease-in-out" on:click={handleClick} on:mousemove={handleMouseMove} on:mouseleave={handleMouseLeave} style="transform: perspective(1000px) rotateX({rotateX}deg) rotateY({rotateY}deg); transition: transform 0.1s ease-out;">
 	<img src={image} alt="Playing card" class="w-full h-full object-contain" />
 </div>
