@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let label: string = "BUTTON TEXT"
 	export let loading: boolean = false;
+	export let disabled: boolean = false;
 	export let affirmative: boolean = false;
 	export let loadingTime: number = 2000;
 	export let delay: number = 0;
@@ -19,7 +20,7 @@
 </script>
 
 <div class="buttonctx">
-	<button on:click={clicked} disabled={loading} class="rounded-ss-4xl outline outline-transparent transition-all cursor-pointer {affirmative ? 'bg-yellow-600' : 'bg-red-800'} font-extrabold rounded-ee-4xl px-12 py-3 text-3xl m-4 text-white hover:bg-black hover:px-24 focus:outline-4 active:outline-4 focus:text-black active:text-black relative">
+	<button on:click={clicked} disabled={loading || disabled} class="rounded-ss-4xl outline outline-transparent transition-all cursor-pointer {affirmative ? 'bg-yellow-600' : 'bg-red-800'} {disabled ? 'opacity-50' : ''} font-extrabold rounded-ee-4xl px-12 py-3 text-3xl m-4 text-white {disabled ? '' : 'hover:bg-black hover:px-24'} focus:outline-4 active:outline-4 focus:text-black active:text-black relative">
 		<span class={loading ? 'invisible' : 'visible'}>
 			{label.toUpperCase()}
 		</span>
