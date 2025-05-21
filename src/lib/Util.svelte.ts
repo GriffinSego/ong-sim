@@ -6,6 +6,17 @@ export function sleep(ms: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+export const value = {
+	thousand: 1e3,
+	million: 1e6,
+	billion: 1e9,
+	trillion: 1e12,
+	quadrillion: 1e15,
+	quintillion: 1e18,
+	sextillion: 1e21,
+	septillion: 1e24,
+}
+
 /**
  * Format number with magnitude suffix (K, M, B, T)
  * @param num Number to format
