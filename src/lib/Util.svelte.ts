@@ -2,6 +2,38 @@
  * Async delay using Promise
  * @param ms Delay duration in milliseconds
  */
-export const sleep = (ms: number): Promise<void> => {
+export function sleep(ms: number): Promise<void> {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+/**
+ * Format number with magnitude suffix (K, M, B, T)
+ * @param num Number to format
+ * @param precision Decimal places to keep
+ */
+export function formatHumanReadableNumber(num: number, precision: number = 1): string {
+	const magnitudes = [
+		{ threshold: 1e12, suffix: 'T' },
+		{ threshold: 1e9, suffix: 'B' },
+		{ threshold: 1e6, suffix: 'M' },
+		{ threshold: 1e3, suffix: 'K' }
+	];
+
+	for (const { threshold, suffix } of magnitudes) {
+		if (Math.abs(num) >= threshold) {
+			return `${(num / threshold).toFixed(precision).replace(/\.?0+$/, '')}${suffix}`;
+		}
+	}
+	return num.toString();
+}
+
+/**
+ * Convert month number (1-12) to English month name
+ * @param month Numeric month (1-12)
+ */
+export function intToMonth(month: number): string {
+	const months = ["January", "February", "March", "April", "May", "June", 
+		"July", "August", "September", "October", "November", "December"];
+	return months[month - 1];
+}
+

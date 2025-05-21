@@ -24,13 +24,12 @@
 		state.scene = 3;
 	}
 </script>
-
-<div class="flex flex-col items-center p-8 overflow-y-hidden">
-	<Banner label="Congratulations on your new position as CEO of OyleCo Inc. I'm Candice – your Executive Assistant.
+<Banner label="Congratulations on your new position as CEO of OyleCo Inc. I'm Candice – your Executive Assistant.
 Please choose which character you would like to play as, mouse over each character to get an
 overview of their strengths and weaknesses, select one and then click 'Confirm'" image="/src/assets/char/exass.png" visible={state.scene == 2 && done == false}/>
+<div class="flex flex-col items-center p-8 pt-16 overflow-y-hidden">
 
-	<div class="flex flex-row flex-wrap justify-center gap-4 w-full transition-all duration-1000 ease-in-out" class:translate-y-[80vh]={done}>
+	<div class="flex flex-row flex-wrap justify-center gap-4 max-w-screen min-w-full transition-all duration-1000 ease-in-out" class:translate-y-[80vh]={done}>
 		<Card image={genimg} id=gen callback={selectCharacter} selected={selection=="gen"} confirmed={selection=="gen" && done}></Card>
 		<Card image={finimg} id=fin callback={selectCharacter} selected={selection=="fin"} confirmed={selection=="fin" && done}></Card>
 		<Card image={mnaimg} id=mna callback={selectCharacter} selected={selection=="mna"} confirmed={selection=="mna" && done}></Card>
