@@ -3,7 +3,7 @@
  * @param ms Delay duration in milliseconds
  */
 export function sleep(ms: number): Promise<void> {
-	return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export const value = {
@@ -15,7 +15,7 @@ export const value = {
 	quintillion: 1e18,
 	sextillion: 1e21,
 	septillion: 1e24,
-}
+};
 
 /**
  * Format number with magnitude suffix (K, M, B, T)
@@ -27,7 +27,7 @@ export function formatHumanReadableNumber(num: number, precision: number = 1): s
 		{ threshold: 1e12, suffix: 'T' },
 		{ threshold: 1e9, suffix: 'B' },
 		{ threshold: 1e6, suffix: 'M' },
-		{ threshold: 1e3, suffix: 'K' }
+		{ threshold: 1e3, suffix: 'K' },
 	];
 
 	for (const { threshold, suffix } of magnitudes) {
@@ -43,8 +43,19 @@ export function formatHumanReadableNumber(num: number, precision: number = 1): s
  * @param month Numeric month (1-12)
  */
 export function intToMonth(month: number): string {
-	const months = ["January", "February", "March", "April", "May", "June", 
-		"July", "August", "September", "October", "November", "December"];
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
 	return months[month - 1];
 }
-

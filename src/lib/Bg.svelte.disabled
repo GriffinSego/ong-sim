@@ -1,0 +1,16 @@
+<script lang="ts">
+	export let img: string;
+	let url = `../assets/bg/${img}.jpg`;
+	// import bg1 from '../assets/bg/1.jpg';
+	// import bg2 from '../assets/bg/2.jpg';
+
+	const images = import.meta.glob('../assets/bg/*.jpg', { eager: true });
+</script>
+
+<div
+	class="fixed left-0 top-0 h-screen w-screen z-0 bg-fixed bg-center bg-auto bg-origin-border bg-no-repeat bg-[url(../assets/bg/{img}.jpg)] pointer-events-none bg-tan"
+></div>
+<div class="fixed top-0 left-0">
+	<img src={url} alt="invalid bg img url" class="opacity-50 w-10 h-10" />
+</div>
+<img src={url} alt="img url is invalid or unreadable (url: {url})" class="" />

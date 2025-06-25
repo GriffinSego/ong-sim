@@ -1,7 +1,8 @@
 // Export a single state object that contains all the game state
 type State = {
 	scene: number;
-	month: number;
+	landmen: number;
+	quarter: number;
 	oilPrice: number;
 	cash: number;
 	debt: number;
@@ -14,6 +15,7 @@ type State = {
 	rigsInUse: number;
 	wells: number;
 	hacks: number;
+	wellsVulnerable: number;
 	fatalities: number;
 	shareholderSentiment: number;
 	char: 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh';
@@ -35,7 +37,8 @@ type State = {
 
 export const state = $state<State>({
 	scene: 1,
-	month: 1,
+	landmen: 10,
+	quarter: 1,
 	oilPrice: 60,
 	cash: 1300000000,
 	debt: 13000000000,
@@ -48,6 +51,7 @@ export const state = $state<State>({
 	rigsInUse: 0,
 	wells: 410,
 	hacks: 0,
+	wellsVulnerable: 410,
 	fatalities: 0,
 	shareholderSentiment: 100,
 	char: 'gen' as 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh',
@@ -69,6 +73,7 @@ export const state = $state<State>({
 });
 export const ephemeralState = $state({
 	oilPrice: 60,
+	landmen: 10,
 	cash: 1300000000,
 	debt: 13000000000,
 	revenue: 0,
@@ -76,13 +81,10 @@ export const ephemeralState = $state({
 	operatingCost: 0,
 	cyberRisk: 0.2,
 	rigs: 20,
-	spills: 0,
 	rigsInUse: 0,
 	wells: 410,
-	hacks: 0,
-	fatalities: 0,
+	wellsVulnerable: 410,
 	shareholderSentiment: 100,
-	char: 'gen' as 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh',
 	sharePrice: 150.0,
 	interestRate: 0.01,
 	operatingCostMultiplier: 1.0,

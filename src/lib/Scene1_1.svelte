@@ -1,0 +1,29 @@
+<script lang="ts">
+	import { state } from './State.svelte';
+	import Banner from './Banner.svelte';
+	import Button from './Button.svelte';
+	import exassimg from '../assets/char/exass.png';
+</script>
+
+<Banner
+	label="Congratulations! It is Q1 2025, and you have just been appointed CEO of OyleCo Inc, an oil and gas
+company focusing on upstream oil and gas, based in Houston TX, with 410 wells
+spread across the Permian Basin. Winning this position is exciting, but the euphoria is
+wearing off quickly in the wake of announcements that the Permian Basin has hit peak
+oil, indicating that produciton will start to decline until stock are depleted across the
+entire basin."
+	image={exassimg}
+	visible={state.scene == 1.1}
+></Banner>
+<p class="text-red-700 font-extrabold text-3xl my-24">
+	The new CEO needs to steer the company through these trying times.
+</p>
+<Button
+	label="OK"
+	loading={false}
+	loadingTime={5000}
+	delay={500}
+	callback={() => {
+		state.scene = 2;
+	}}
+/>

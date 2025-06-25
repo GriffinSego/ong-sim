@@ -3,7 +3,14 @@
 module.exports = {
 	content: ['./index.html', './src/**/*.{svelte,js,ts}'],
 	theme: {
-		extend: {},
+		extend: {
+			fill: (theme) => theme('colors'),
+			stroke: (theme) => theme('colors'),
+		},
+	},
+	variants: {
+		fill: ['hover'],
+		stroke: ['hover'],
 	},
 	plugins: [],
 };

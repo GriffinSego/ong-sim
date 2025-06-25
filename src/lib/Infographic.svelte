@@ -1,13 +1,43 @@
 <script lang="ts">
-	import * as util from "./Util.svelte";
+	import * as util from './Util.svelte';
 	export let label: string;
 	export let value: number;
+	export let quantifier: string | undefined = undefined;
 	export let change: number;
-	export let currency: boolean;
-
+	export let type: 'number' | 'percent' | 'currency' = 'number';
+	export let colspan: number | undefined = undefined;
+	export let rowspan: number | undefined = undefined;
 </script>
-<div class="flex flex-col flex-nowrap items-center justify-end border-4 border-black bg-white size-40 m-1">
-	<div class="text-2xl font-bold text-black">{label}</div>
-	<div class="text-3xl font-light text-black">{currency ? '$':''}{util.formatHumanReadableNumber(value)}</div>
-	<div class="text-1xl font-extralight opacity-50 {(change > 0.0) ? 'text-red-700' : (change == 0.0 ? 'text-black' : 'text-green-600')}">{change > 0.0 ? '+' : change == 0.0 ? '' : '-'}{currency ? '$':''}{util.formatHumanReadableNumber(change)}</div>
+
+<div
+	class="flex flex-col flex-nowrap items-center justify-end bg-orange-200/85 w-full {rowspan
+		? 'h-full'
+		: 'h-30'} overflow-hidden{colspan ? ' col-span-' + colspan : ''}{rowspan
+		? ' row-span-' + rowspan
+		: ''}"
+>
+	<div class="text-sm font-semibold text-white bg-stone-700 p-0 py-1 w-full align-top shrink-0">
+		{label}
+	</div>
+	<div class="text-3xl font-extrabold text-white grow mt-2 -mb-2">
+		{type == 'currency' ? '$' : ''}{util.formatHumanReadableNumber(value)}{type == 'percent'
+			? '%'
+			: ''}
+	</div>
+	{#if quantifier}
+		<div class="text-xs font-normal text-white grow uppercase w-full">
+			{quantifier}
+		</div>
+	{/if}
+	<div
+		class="text-md font-extralight opacity-50 {change > 0.0
+			? 'text-red-700'
+			: change == 0.0
+				? 'text-black'
+				: 'text-green-600'}"
+	>
+		{change < 0.0 ? '-' : '+'}{type == 'currency' ? '$' : ''}{type == 'percent'
+			? '%'
+			: ''}{util.formatHumanReadableNumber(change)} NEXT TURN
+	</div>
 </div>
