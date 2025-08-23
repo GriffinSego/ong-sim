@@ -81,8 +81,8 @@
 			}}
 		/>
 		<Infobutton
-			label="Raise Capital"
-			description="Increase shares and cash"
+			label="Raise Funds"
+			description="+ Shares & cash"
 			cost={0}
 			color="bg-teal-600"
 			rowspan={2}
@@ -118,12 +118,6 @@
 		></div>
 	{:else if selectedTab === 'ops'}
 		<Infographic
-			label="Rig Usage"
-			value={state.rigsInUse / state.rigs}
-			change={ephemeralState.rigsInUse / ephemeralState.rigs - state.rigsInUse / state.rigs}
-			type="percent"
-		/>
-		<Infographic
 			label="Wells"
 			value={state.wells}
 			change={ephemeralState.wells - state.wells}
@@ -136,13 +130,7 @@
 			type="number"
 		/>
 		<Infographic
-			label="R&D Cost"
-			value={state.rndCostMultiplier * 1}
-			change={0}
-			type="percent"
-		/>
-		<Infographic
-			label="Total Production"
+			label="Production"
 			value={state.production}
 			change={ephemeralState.production - state.production}
 			type="number"
@@ -157,7 +145,7 @@
 			}}
 		/>
 		<Infobutton
-			label="AI Interpretation"
+			label="AI Inter."
 			description="/QTR"
 			cost={15 * Util.value.million}
 			color="bg-fuchsia-700"
@@ -194,7 +182,7 @@
 			}}
 		/>
 		<Infobutton
-			label="Horiz. Drilling"
+			label="H. Drilling"
 			description="/QTR"
 			cost={15 * Util.value.million}
 			color="bg-fuchsia-700"
@@ -204,7 +192,7 @@
 			}}
 		/>
 		<Infobutton
-			label="Buy 10 Landmen"
+			label="Landman"
 			description="/QTR"
 			cost={250 * Util.value.million}
 			color="bg-fuchsia-700"
@@ -265,7 +253,7 @@
 			colspan={1}
 		/>
 		<Infographic
-			label="Environmental Incident"
+			label="Env. Incident"
 			value={state.production}
 			change={ephemeralState.production - state.production}
 			type="percent"
@@ -282,7 +270,7 @@
 			}}
 		/>
 		<Infobutton
-			label="Environmental Program"
+			label="Env. Program"
 			description="/QTR"
 			cost={9 * Util.value.million}
 			color="bg-red-700"
@@ -338,7 +326,7 @@
 			}}
 		/>
 		<Infobutton
-			label="BlastWave BlastShield"
+			label="BlastShield"
 			description="3m+1.5m/QTR"
 			cost={3 * Util.value.million}
 			color="bg-red-700"

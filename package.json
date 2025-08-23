@@ -24,6 +24,8 @@
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.1.7",
-		"@tailwindcss/vite": "^4.1.7"
+		"@tailwindcss/vite": "^4.1.7",
+		"alea": "^1.0.1",
+		"simplex-noise": "^4.0.3"
 	}
 }

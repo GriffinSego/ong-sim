@@ -10,9 +10,9 @@
 </script>
 
 <div
-	class="flex flex-col flex-nowrap items-center justify-end bg-orange-200/85 w-full {rowspan
+	class="flex flex-col flex-nowrap items-center justify-end bg-orange-200/85 {rowspan
 		? 'h-full'
-		: 'h-30'} overflow-hidden{colspan ? ' col-span-' + colspan : ''}{rowspan
+		: 'h-30'} overflow-hidden{colspan ? ' w-full col-span-' + colspan : ' w-full'}{rowspan
 		? ' row-span-' + rowspan
 		: ''}"
 >
@@ -38,6 +38,6 @@
 	>
 		{change < 0.0 ? '-' : '+'}{type == 'currency' ? '$' : ''}{type == 'percent'
 			? '%'
-			: ''}{util.formatHumanReadableNumber(change)} NEXT TURN
+			: ''}{util.formatHumanReadableNumber(change)} NEXT QTR
 	</div>
 </div>

@@ -54,4 +54,17 @@
 		change={ephemeralState.sharePrice - state.sharePrice}
 		type="currency"
 	/>
+	<Infographic label="R&D Cost" value={state.rndCostMultiplier * 1} change={0} type="percent" />
+	<Infographic
+		label="Rigs idle"
+		value={state.rigs - state.rigsInUse}
+		change={-state.rigsInUse}
+		type="number"
+	/>
+	<Infographic
+		label="Rigs in use"
+		value={state.rigsInUse}
+		change={-state.rigsInUse}
+		type="number"
+	/>
 </div>

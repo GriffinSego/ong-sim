@@ -27,7 +27,7 @@
 	>
 		{label}
 	</div>
-	<!-- <div class="text-sm font-light italic text-black">{description}</div> -->
+	<div class="text-sm font-light italic text-black">{description}</div>
 	{#if scaleButtons == false}
 		<div
 			class="text-lg font-extrabold opacity-50 {cost > 0.0

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { state } from './State.svelte';
+	import { state, resetState } from './State.svelte';
 	import Banner from './Banner.svelte';
 	import Button from './Button.svelte';
 	import exassimg from '../assets/char/exass.png';
@@ -10,7 +10,7 @@
 company focusing on upstream oil and gas, based in Houston TX, with 410 wells
 spread across the Permian Basin. Winning this position is exciting, but the euphoria is
 wearing off quickly in the wake of announcements that the Permian Basin has hit peak
-oil, indicating that produciton will start to decline until stock are depleted across the
+oil, indicating that production will start to decline until stock are depleted across the
 entire basin."
 	image={exassimg}
 	visible={state.scene == 1.1}
@@ -19,11 +19,12 @@ entire basin."
 	The new CEO needs to steer the company through these trying times.
 </p>
 <Button
-	label="OK"
+	label="BEGIN"
 	loading={false}
 	loadingTime={5000}
 	delay={500}
 	callback={() => {
+		resetState();
 		state.scene = 2;
 	}}
 />

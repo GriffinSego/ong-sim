@@ -14,7 +14,7 @@
 	import chaimgback from '../assets/card/cha-back.png';
 	import rndimgback from '../assets/card/rnd-back.png';
 	import exhimgback from '../assets/card/exh-back.png';
-	import { state } from './State.svelte';
+	import { state, resetState, composeMap } from './State.svelte';
 	import Card from './Card.svelte';
 	import * as util from './Util.svelte';
 	let selection: 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh' | '' = '';
@@ -27,8 +27,42 @@
 		else if (selection === character) selection = '';
 	}
 	async function confirm() {
+		if (done) return;
 		done = true;
 		state.char = selection as 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh';
+		//apply special effects of selected character
+		resetState();
+		state.gameStart = Date.now();
+		composeMap();
+		state.operatingCostMultiplier = 1.0;
+		state.interestRate = 0.02;
+		state.mergerCostMultiplier = 1.0;
+		state.shareholderSentimentMultiplier = 1.0;
+		state.lawsuitInvestigationMultiplier = 1.0;
+		state.rndCostMultiplier = 1.0;
+		state.cyberCostMultiplier = 1.0;
+		switch (selection) {
+			case 'gen':
+				break;
+			case 'fin':
+				state.interestRate = 0.015;
+				state.operatingCostMultiplier = 0.99;
+				break;
+			case 'mna':
+				state.mergerCostMultiplier = 0.75;
+				break;
+			case 'cha':
+				state.shareholderSentimentMultiplier = 1.1;
+				state.lawsuitInvestigationMultiplier = 0.5;
+				break;
+			case 'rnd':
+				state.rndCostMultiplier = 0.5;
+				break;
+			case 'exh':
+				state.operatingCostMultiplier = 0.98;
+				state.cyberCostMultiplier = 0.5;
+				break;
+		}
 		await util.sleep(2300);
 		state.scene = 3;
 	}
@@ -44,7 +78,7 @@
 <div class="flex flex-col items-center p-8 pt-16 overflow-y-hidden">
 	<div
 		class="flex flex-row flex-wrap justify-center gap-4 max-w-screen min-w-full transition-all duration-1000 ease-in-out"
-		class:translate-y-[80vh]={done}
+		class:translate-y-[-10vh]={done}
 	>
 		<Card
 			front={genimg}

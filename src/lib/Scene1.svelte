@@ -4,9 +4,8 @@
 	import { state } from './State.svelte';
 </script>
 
-<br />
 <div class="flex flex-col items-center z-10">
-	<img src={mm} alt="Dan" class="w-200 h-200 z-20" />
+	<img src={mm} alt="Dan" class="z-20 size-[60vh] mb-20" />
 	<Button
 		label="Play Game"
 		loading={false}
