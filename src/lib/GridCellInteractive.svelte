@@ -81,7 +81,7 @@
 	state.selectedCell.enabled
 		? 'animate-pulse'
 		: 'animate-none'} border-0 border-black text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-	style="background-color: rgb({Math.max(2000 - state.map[x][y].oilRemaining, 0) / 10},{Math.min(
+	style="corner: rgb({Math.max(2000 - state.map[x][y].oilRemaining, 0) / 10},{Math.min(
 		255,
 		state.map[x][y].oilRemaining
 	) / 1.5},65);"

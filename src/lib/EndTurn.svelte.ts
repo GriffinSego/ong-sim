@@ -78,6 +78,8 @@ export async function endTurn() {
 			state.oilPrice -= oilShock;
 		}
 	}
+	//round oil price
+	state.oilPrice = Math.round(state.oilPrice);
 	//pay out interest
 	endTurnLog.push('Interest on debt paid: $' + state.debt * state.interestRate);
 	state.cash -= state.debt * state.interestRate;

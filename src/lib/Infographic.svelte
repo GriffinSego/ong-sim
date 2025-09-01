@@ -19,13 +19,13 @@
 	<div class="text-sm font-semibold text-white bg-stone-700 p-0 py-1 w-full align-top shrink-0">
 		{label}
 	</div>
-	<div class="text-3xl font-extrabold text-white grow mt-2 -mb-2">
+	<div class="text-3xl font-extrabold text-black grow mt-2 -mb-2">
 		{type == 'currency' ? '$' : ''}{util.formatHumanReadableNumber(value)}{type == 'percent'
 			? '%'
 			: ''}
 	</div>
 	{#if quantifier}
-		<div class="text-xs font-normal text-white grow uppercase w-full">
+		<div class="text-xs font-normal text-black grow uppercase w-full">
 			{quantifier}
 		</div>
 	{/if}

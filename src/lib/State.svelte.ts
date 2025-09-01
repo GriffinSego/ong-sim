@@ -101,7 +101,7 @@ export const state = $state<State>({
 	leasedWells: 0,
 	quarter: 1,
 	oilPrice: 60,
-	cash: 1300000000,
+	cash: million(13),
 	debt: million(140),
 	revenue: million(3 * 12.167), //36.5m revenue for first quarter, 1/4 of 146m annual revenue as per v7 spec
 	production: million(8.5), //bbl per quarter, 1/4 of 34m bbl per year
