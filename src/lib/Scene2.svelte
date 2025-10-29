@@ -75,10 +75,13 @@
 	image="/src/assets/char/exass.png"
 	visible={state.scene == 2 && done == false}
 />
-<div class="flex flex-col items-center p-8 pt-16 overflow-y-hidden">
+<div
+	class="flex flex-col items-center p-8 pt-16 {done ? 'overflow-y-visible' : 'overflow-y-hidden'}"
+>
 	<div
-		class="flex flex-row flex-wrap justify-center gap-4 max-w-screen min-w-full transition-all duration-1000 ease-in-out"
-		class:translate-y-[-10vh]={done}
+		class="flex flex-row flex-wrap justify-center gap-4 max-w-screen min-w-full transition-all duration-1000 ease-in-out {done
+			? 'translate-y-20vh'
+			: ''}"
 	>
 		<Card
 			front={genimg}
