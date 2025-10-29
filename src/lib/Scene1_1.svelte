@@ -6,8 +6,9 @@
 </script>
 
 <Banner
-	label="Congratulations! It is Q1 2026, and you have just been appointed CEO of OyleCo Inc, an oil and gas
-company focusing on upstream oil and gas, based in Houston TX, with 410 wells
+	label="Congratulations! It is Q1 {new Date().getFullYear() +
+		1}, and you have just been appointed CEO of OyleCo Inc, an oil and gas
+company focusing on upstream oil and gas, based in Houston TX, with 37 wells
 spread across the Permian Basin. Winning this position is exciting, but the euphoria is
 wearing off quickly in the wake of announcements that the Permian Basin has hit peak
 oil, indicating that production will start to decline until stock are depleted across the
