@@ -6,7 +6,7 @@
 
 <div
 	class="fixed z-40 h-screen p-20 bg-yellow-800 left-0 mb-0 w-[40vw] {state.selectedCell.enabled
-		? 'block opacity-80 visible'
+		? 'block opacity-90 visible'
 		: 'hidden opacity-0 invisible'} transition-all duration-300 ease-in-out {menuUnfolded
 		? 'bottom-0'
 		: 'bottom-0'}"

@@ -20,7 +20,7 @@
 		<ActionMenu />
 	</div>
 	<div class="grow-1"></div>
-	<div class="flex flex-col m-4" id="content-right-ctx">
+	<div class="flex flex-col m-0" id="content-right-ctx">
 		<Banner
 			label="Good morning, sir. It is Q{state.quarter +
 				' ' +
@@ -32,17 +32,16 @@
 		<div class="flex flex-row justify-end">
 			<div class="flex flex-col">
 				<div
-					class="border-black bg-yellow-600/60 w-full align-left float-left rounded-se-2xl text-white font-bold mb-1 py-1"
+					class="border-black bg-yellow-600 w-full align-left float-left rounded-se-2xl text-white font-bold mb-1 py-1"
 					id="grid-map-header"
 				>
-					Map overview
+					Map overview (Click land to select)
 				</div>
 				<GridMap />
 				<LandMenu />
 			</div>
 		</div>
-		<!-- <Map /> -->
-		<div class="flex flex-row flex-nowrap">
+		<div class="flex flex-row flex-nowrap m-0 p-0">
 			<div class="grow-1"></div>
 			<Button
 				label="End Turn"
@@ -54,6 +53,7 @@
 					endTurn();
 				}}
 			/>
+			<div class="grow-1"></div>
 		</div>
 	</div>
 	<div class="grow-1"></div>
