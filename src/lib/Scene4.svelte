@@ -22,9 +22,9 @@
 	<div class="grow-1"></div>
 	<div class="flex flex-col m-4" id="content-right-ctx">
 		<Banner
-			label="Good morning, sir. It is {util.intToMonth((state.quarter - 1) * 3) +
+			label="Good morning, sir. It is Q{state.quarter +
 				' ' +
-				(2026 + Math.floor(state.quarter / 4))}, and you have {12 -
+				(new Date().getFullYear() + 1 + Math.floor(state.quarter / 4))}, and you have {12 -
 				state.quarter} quarters left to right this company. What would you like to do?"
 			image={exassimg}
 		/>
