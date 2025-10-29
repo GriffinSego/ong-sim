@@ -20,31 +20,34 @@
 		</div>
 	{/each}
 </div> -->
-
-<div class="grid grid-cols-16 grid-rows-16 border border-red-500 bg-black w-fit" id="grid-map-ctx">
-	<div class="h-9 w-9 col-span-1 row-span-1 bg-black" id={'permianindent'}></div>
+<div class="flex flex-row">
 	<div
-		class="h-9 w-135 col-span-15 row-span-1 bg-black text-white font-bold text-2xl"
-		id={'permianlabel'}
+		class="grid grid-cols-16 grid-rows-16 border border-black bg-black w-fit"
+		id="grid-map-ctx"
 	>
-		Permian Basin
-	</div>
-	<div class="h-9 w-9 col-span-1 row-span-1 bg-white" id={'delawareindent'}></div>
-	<div
-		class="h-9 w-36 col-span-4 row-span-1 bg-white text-black font-bold text-xl"
-		id={'delawarelabel'}
-	>
-		Delaware Basin
-	</div>
-	<div class="h-9 w-27 col-span-3 row-span-1 bg-white" id={'midlandindent'}></div>
-	<div
-		class="h-9 w-36 col-span-4 row-span-1 bg-white text-black font-bold text-xl"
-		id={'midlandlabel'}
-	>
-		Midland Basin
-	</div>
-	<div class="h-9 w-36 col-span-4 row-span-1 bg-white" id={'midlandpostindent'}></div>
-	<!-- <GridCell />
+		<div class="h-9 w-9 col-span-1 row-span-1 bg-black" id={'permianindent'}></div>
+		<div
+			class="h-9 w-135 col-span-15 row-span-1 bg-black text-white font-bold text-2xl"
+			id={'permianlabel'}
+		>
+			Permian Basin
+		</div>
+		<div class="h-9 w-9 col-span-1 row-span-1 bg-white" id={'delawareindent'}></div>
+		<div
+			class="h-9 w-36 col-span-4 row-span-1 bg-white text-black font-bold text-xl"
+			id={'delawarelabel'}
+		>
+			Delaware Basin
+		</div>
+		<div class="h-9 w-27 col-span-3 row-span-1 bg-white" id={'midlandindent'}></div>
+		<div
+			class="h-9 w-36 col-span-4 row-span-1 bg-white text-black font-bold text-xl"
+			id={'midlandlabel'}
+		>
+			Midland Basin
+		</div>
+		<div class="h-9 w-36 col-span-4 row-span-1 bg-white" id={'midlandpostindent'}></div>
+		<!-- <GridCell />
 	<GridCell textContent="A" />
 	<GridCell textContent="B" />
 	<GridCell textContent="C" />
@@ -61,8 +64,12 @@
 	<GridCell textContent="N" />
 	<GridCell />
 	<GridCell textContent="1" /> -->
-	{#each cellSpace as pair}
-		<GridCellInteractive x={pair.x} y={pair.y} />
-	{/each}
-	<!-- <GridCellInteractive x={1} y={1}/> -->
+		{#each cellSpace as pair}
+			<GridCellInteractive x={pair.x} y={pair.y} />
+		{/each}
+		<!-- <GridCellInteractive x={1} y={1}/> -->
+	</div>
+	<div class="border border-black h-full min-w-10">
+		<img class="h-full" src="/key.svg" alt="err" />
+	</div>
 </div>

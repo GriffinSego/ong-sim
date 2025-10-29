@@ -32,7 +32,7 @@
 		<div class="flex flex-row justify-end">
 			<div class="flex flex-col">
 				<div
-					class="border-red-500 bg-yellow-600/60 w-full align-left float-left rounded-se-2xl text-white font-bold mb-1 py-1"
+					class="border-black bg-yellow-600/60 w-full align-left float-left rounded-se-2xl text-white font-bold mb-1 py-1"
 					id="grid-map-header"
 				>
 					Map overview
