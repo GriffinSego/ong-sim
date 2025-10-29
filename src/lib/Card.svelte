@@ -36,24 +36,26 @@
 			: '-mt-12'
 		: '-mt-1'} {selected
 		? ' animate-pulse z-30'
-		: 'z-10'} transition-all duration-700 ease-in-out overflow-hidden"
+		: ' z-10'} transition-all duration-700 ease-in-out overflow-hidden"
 	on:click={handleClick}
 	on:mousemove={handleMouseMove}
 	on:mouseleave={handleMouseLeave}
-	style="transform: perspective(1000px) rotateX({rotateX}deg) rotateY({rotateY}deg); transition: transform 0.1s ease-out;"
+	style="transform: perspective(1000px) rotateX({selected ? 0 : rotateX}deg) rotateY({selected
+		? 0
+		: rotateY}deg); transition: transform 0.1s ease-out;"
 >
 	<img
 		src={front}
 		alt="Playing card"
-		class="{hovered
+		class="{hovered && !selected
 			? 'rotate-y-180 opacity-0'
 			: 'rotate-y-0 opacity-100'} w-full h-full object-contain transition-all duration-500 ease-linear shadow-sxl/30 shadow-indigo-500"
 	/>
 	<img
 		src={back}
 		alt="Playing card"
-		class="{hovered
+		class="{hovered && !selected
 			? 'rotate-y-0 opacity-100'
-			: 'rotate-y-180 opacity-0'} relative -top-68 w-full h-full object-contain transition-all duration-500 ease-linear shadow-xl/30 shadow-indigo-500"
+			: 'rotate-y-180 opacity-0'} relative -top-60 w-full h-full object-contain transition-all duration-500 ease-linear shadow-xl/30 shadow-indigo-500"
 	/>
 </button>
