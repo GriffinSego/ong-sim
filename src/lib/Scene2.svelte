@@ -96,14 +96,14 @@
 			selected={selection == 'fin'}
 			confirmed={selection == 'fin' && done}
 		></Card>
-		<Card
+		<!-- <Card
 			front={mnaimg}
 			back={mnaimgback}
 			id="mna"
 			callback={selectCharacter}
 			selected={selection == 'mna'}
 			confirmed={selection == 'mna' && done}
-		></Card>
+		></Card> -->
 		<Card
 			front={chaimg}
 			back={chaimgback}
