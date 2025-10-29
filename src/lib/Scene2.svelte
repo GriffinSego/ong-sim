@@ -18,6 +18,14 @@
 	import Card from './Card.svelte';
 	import * as util from './Util.svelte';
 	let selection: 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh' | '' = '';
+	let fullname: Record<string, string> = {
+		gen: 'Darren Floods, Generalist',
+		fin: 'Mary Ouchloss, Financial Expert',
+		mna: 'M&A placeholder',
+		cha: 'Tex Rillerson, Charismatic Leader',
+		rnd: 'Armin Flasser, R&D Specialist',
+		exh: 'Patrick Poutine, Security Expert',
+	};
 	let done: boolean = false;
 	function selectCharacter(
 		character: 'gen' | 'fin' | 'mna' | 'cha' | 'rnd' | 'exh',
@@ -70,8 +78,10 @@
 
 <Banner
 	label={selection == ''
-		? 'I’m Candice – your Executive Assistant. Please choose which character you would like to play as, mouse over each character to get an overview of their strengths and weaknesses, select one and then click “Confirm”.'
-		: 'Are you sure?'}
+		? 'I’m Candice – your Executive Assistant. Please choose which character you would like to play as. Mouse over each character to get an overview of their strengths and weaknesses, select one, and then click “Confirm”.'
+		: 'Could you confirm that you want to play as ' +
+			fullname[selection] +
+			'? If you would like to choose someone else, click their card instead.'}
 	image="/src/assets/char/exass.png"
 	visible={state.scene == 2 && done == false}
 />
