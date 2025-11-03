@@ -173,9 +173,9 @@
 			}}
 		/>
 		<Infobutton
-			label="Buy 10 Rigs"
+			label="Buy 1 Rig"
 			description="/QTR"
-			cost={250 * Util.value.million}
+			cost={25 * Util.value.million}
 			color="bg-fuchsia-700"
 			callback={() => {
 				alert('wow!');
