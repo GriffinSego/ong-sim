@@ -22,8 +22,8 @@ export async function endTurn() {
 	for (let i = 0; i < state.map.length; i++) {
 		for (let j = 0; j < state.map[i].length; j++) {
 			if (state.map[i][j].drilled && (state.map[i][j].leased || state.map[i][j].owned)) {
-				state.production += state.map[i][j].oilRemaining * 0.5;
-				state.map[i][j].oilRemaining *= 0.5;
+				state.production += state.map[i][j].produces * 0.5;
+				state.map[i][j].produces *= 0.5;
 			}
 		}
 	}

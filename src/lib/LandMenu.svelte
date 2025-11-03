@@ -11,13 +11,12 @@
 		? 'bottom-0'
 		: 'bottom-0'}"
 >
-	<div class="text-sm lg:text-2xl max-h-40 min-h-20 overflow-scroll">
+	<div class="text-sm lg:text-2xl max-h-40 min-h-20 overflow-visible">
 		{#if !state.map[state.selectedCell.x][state.selectedCell.y].capped}
-			{state.selectedCell.basin} BASIN {state.selectedCell.x}, {state.selectedCell.y}. You do
-			not have access to this field.
+			You do not have access to this field.
 			{#if state.map[state.selectedCell.x][state.selectedCell.y].owned || state.map[state.selectedCell.x][state.selectedCell.y].leased}
 				This field has
-				{state.map[state.selectedCell.x][state.selectedCell.y].oilRemaining}T barrels of oil
+				{state.map[state.selectedCell.x][state.selectedCell.y].produces} BOE produced per day
 				remaining.
 			{:else}
 				You do not know how much oil is here.
@@ -55,13 +54,15 @@
 		/> -->
 		{#if !state.map[state.selectedCell.x][state.selectedCell.y].capped}
 			<Button
-				label={state.rigs - state.rigsInUse > 0 ? ' DRILL BABY DRILL' : 'NO IDLE RIGS'}
+				label={state.rigs - state.rigsInUse > 0 ? ' DRILL ($2M)' : 'NO IDLE RIGS'}
 				loadingTime={0}
 				callback={() => {
 					state.map[state.selectedCell.x][state.selectedCell.y].drilled = true;
 					state.rigsInUse += 1;
+					state.cash -= 2000000;
 				}}
-				disabled={state.map[state.selectedCell.x][state.selectedCell.y].drilled ||
+				disabled={!state.map[state.selectedCell.x][state.selectedCell.y].leased ||
+					state.map[state.selectedCell.x][state.selectedCell.y].drilled ||
 					state.rigs - state.rigsInUse < 1}
 			/>
 			<Button
@@ -75,6 +76,15 @@
 			/>
 		{/if}
 		{#if state.map[state.selectedCell.x][state.selectedCell.y].capped && state.map[state.selectedCell.x][state.selectedCell.y].leased}
+			<Button
+				label="CONVERT TO SOLAR ($20M)"
+				loadingTime={0}
+				callback={() => {
+					state.leasedWells -= 1;
+					state.map[state.selectedCell.x][state.selectedCell.y].leased = false;
+				}}
+				disabled={!state.map[state.selectedCell.x][state.selectedCell.y].leased}
+			/>
 			<Button
 				label="END LEASE"
 				loadingTime={0}
