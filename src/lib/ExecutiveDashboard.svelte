@@ -56,15 +56,10 @@
 	/>
 	<Infographic label="R&D Cost" value={state.rndCostMultiplier * 1} change={0} type="percent" />
 	<Infographic
-		label="Rigs idle"
-		value={state.rigs - state.rigsInUse}
-		change={-state.rigsInUse}
-		type="number"
+		label="Rig utilization"
+		value={(state.rigsInUse / 3 / state.rigs) * 100}
+		change={-((state.rigsInUse / 3 / state.rigs) * 100)}
+		type="percent"
 	/>
-	<Infographic
-		label="Rigs in use"
-		value={state.rigsInUse}
-		change={-state.rigsInUse}
-		type="number"
-	/>
+	<Infographic label="Total rigs" value={state.rigs} change={0} type="number" />
 </div>
