@@ -100,6 +100,8 @@
 			callback={selectCharacter}
 			selected={selection == 'gen'}
 			confirmed={selection == 'gen' && done}
+			disabled={false}
+			isNew={true}
 		></Card>
 		<Card
 			front={finimg}
@@ -108,6 +110,8 @@
 			callback={selectCharacter}
 			selected={selection == 'fin'}
 			confirmed={selection == 'fin' && done}
+			disabled={1 > util.get_pt()}
+			isNew={util.get_pt() == 1}
 		></Card>
 		<!-- <Card
 			front={mnaimg}
@@ -124,6 +128,8 @@
 			callback={selectCharacter}
 			selected={selection == 'cha'}
 			confirmed={selection == 'cha' && done}
+			disabled={2 > util.get_pt()}
+			isNew={util.get_pt() == 2}
 		></Card>
 		<Card
 			front={rndimg}
@@ -132,6 +138,8 @@
 			callback={selectCharacter}
 			selected={selection == 'rnd'}
 			confirmed={selection == 'rnd' && done}
+			disabled={3 > util.get_pt()}
+			isNew={util.get_pt() == 3}
 		></Card>
 		<Card
 			front={exhimg}
@@ -140,6 +148,8 @@
 			callback={selectCharacter}
 			selected={selection == 'exh'}
 			confirmed={selection == 'exh' && done}
+			disabled={4 > util.get_pt()}
+			isNew={util.get_pt() == 4}
 		></Card>
 	</div>
 	<div
