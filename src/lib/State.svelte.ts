@@ -1,38 +1,103 @@
 import { createNoise2D, type NoiseFunction2D } from 'simplex-noise';
 import alea from 'alea';
+import * as util from './Util.svelte.ts';
+import GridCell from './GridCell.svelte';
 
 type CellData = {
-	oilRemaining: number;
+	produces: number;
 	owned: boolean;
 	leased: boolean;
 	drilled: boolean;
 	price: number;
 	capped: boolean;
+	explored: boolean;
+	solar: boolean;
+	type: 'BLANK' | 'HLABEL' | 'VLABEL' | 'OIL_D' | 'OIL_M';
 };
 export function composeMap() {
 	const prng = alea(state.gameStart);
 	const prng_price = alea(state.gameStart + 'price');
+	const prng_starter = alea(state.gameStart + 'starter');
 	const noise2D = createNoise2D(prng);
 	const noise2D_price = createNoise2D(prng_price);
+	const noise2D_starter = createNoise2D(prng_starter);
+	const starterBasin = Math.random() > 0.5 ? 'OIL_D' : 'OIL_M';
 	let map: CellData[][] = [];
-
+	let starterTiles = 0;
 	for (let i = 0; i < 17; i++) {
 		map[i] = [];
+		// if (i == 0) continue;
 		for (let j = 0; j < 14; j++) {
+			if (j == 0 || i == 0) {
+				map[i].push({
+					drilled: true,
+					owned: false,
+					leased: false,
+					produces: 0,
+					price: 0,
+					capped: false,
+					explored: true,
+					solar: false,
+					type: 'BLANK',
+				});
+				continue;
+			}
+			let type: string;
+			let x = i;
+			let y = j;
+			if (x == 1 && y == 1) {
+				type = 'BLANK';
+			} else if (y == 1) {
+				type = 'HLABEL';
+			} else if (x == 1) {
+				type = 'VLABEL';
+			} else if (x == 8) {
+				type = 'BLANK';
+			} else if (y > 10 && x < 8) {
+				type = 'BLANK';
+			} else {
+				type = x > 8 ? 'OIL_M' : 'OIL_D';
+			}
+			let placedStarter = false;
+			const numStarterTimes = 37;
+			const chanceStarterTile = 1 - numStarterTimes / 153;
+			const showAllMap = false;
+			if (
+				(showAllMap || noise2D_starter(x / 10, y / 10) * 2 > chanceStarterTile) &&
+				(type == 'OIL_M' || type == 'OIL_D') &&
+				(showAllMap || starterTiles < numStarterTimes)
+			) {
+				placedStarter = true;
+				starterTiles++;
+				// console.log('Placing starter tile at (' + x + ', ' + y + ') where land is ' + type);
+			}
+			const productionPRNG = noise2D(i / 10, j / 10);
 			map[i].push({
-				drilled: false,
+				drilled: placedStarter,
 				owned: false,
-				leased: false,
-				oilRemaining: Math.floor(
-					3200 * (noise2D(i, j) > 0 ? noise2D(i, j) : -noise2D(i, j))
+				leased: placedStarter,
+				produces: Math.max(
+					0,
+					Math.min(
+						2400,
+						Math.floor(2000 * (productionPRNG > 0 ? productionPRNG : -productionPRNG))
+					)
 				),
 				price: Math.max(50000, Math.floor(noise2D_price(i, j) * 200000)),
 				capped: false,
+				explored: placedStarter,
+				solar: false,
+				type: type as 'BLANK' | 'HLABEL' | 'VLABEL' | 'OIL_D' | 'OIL_M',
 			});
 		}
 	}
-
+	console.log('Starter tiles placed: ' + starterTiles);
 	state.map = map;
+	// if (starterTiles < 5) {
+	// 	state.gameStart = Date.now();
+	// 	setTimeout(composeMap, 500);
+	// 	console.log('regenerating map with only ' + starterTiles);
+	// }
 }
 
 // Export a single state object that contains all the game state

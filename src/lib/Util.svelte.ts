@@ -35,7 +35,12 @@ export function formatHumanReadableNumber(num: number, precision: number = 1): s
 			return `${(num / threshold).toFixed(precision).replace(/\.?0+$/, '')}${suffix}`;
 		}
 	}
-	return num.toString();
+	if (Math.abs(num) > 1 || num % 1 === 0) {
+		//remove decimal places from numbers > 1 or whole numbers
+		return Math.round(num).toString();
+	} else {
+		return num.toFixed(precision);
+	}
 }
 
 /**
