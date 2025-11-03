@@ -64,3 +64,22 @@ export function intToMonth(month: number): string {
 	];
 	return months[month - 1];
 }
+
+export function numberToSuffix(num: number): string {
+	const lastDigit: number = parseInt(num.toString()[num.toString().length - 1]);
+	return ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th', 'th'][lastDigit];
+}
+export function get_pt(): number {
+	return parseInt(localStorage.getItem('playthroughs') ?? '0');
+}
+export function inc_pt(): number {
+	localStorage.setItem('playthroughs', '' + get_pt() + 1);
+	return get_pt();
+}
+export function get_hs(): number {
+	return parseInt(localStorage.getItem('highscore') ?? '0');
+}
+export function set_hs(score: number): number {
+	localStorage.setItem('highscore', '' + get_hs() + 1);
+	return get_hs();
+}
