@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import MapTile from './MapTile.svelte';
-	import texas from '../assets/tx.svg';
-	import mexico from '../assets/mx.svg';
-	import newmexico from '../assets/nm.svg';
+	import texas from '../assets/icon/tx.svg';
+	import mexico from '../assets/icon/mx.svg';
+	import newmexico from '../assets/icon/nm.svg';
 	import * as util from './Util.svelte';
 	const map: MapTile[][] = Array(67)
 		.fill(null)
