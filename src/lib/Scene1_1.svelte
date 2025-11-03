@@ -23,7 +23,7 @@ entire basin."
 	label="BEGIN"
 	loading={false}
 	loadingTime={5000}
-	delay={500}
+	delay={500 * Math.random()}
 	callback={() => {
 		resetState();
 		state.scene = 2;
