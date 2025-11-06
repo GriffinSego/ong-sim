@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { state } from './State.svelte';
-
+	import wellhead from '../assets/icon/wellhead.png';
+	import wellcap from '../assets/icon/wellcap.svg';
+	import solar from '../assets/icon/solar.svg';
 	export let x: number;
 	export let y: number;
 	let textContent: string = '';
@@ -58,21 +60,17 @@
 		: textContent == ''
 			? `Grid cell ${x},${y}`
 			: `Grid label ${textContent}`}
-	class="size-9 col-span-1 row-span-1 text-sm {state.map[x][y].drilled
-		? 'border-1 border-black'
+	class="size-9 relative col-span-1 row-span-1 text-sm {state.map[x][y].leased
+		? 'border-1'
 		: ''} {state.map[x][y].capped ? 'bg-black! text-black' : ''} {state.map[x][y].leased ||
 	state.map[x][y].owned
-		? state.map[x][y].produces < 15
-			? 'bg-red-800'
-			: state.map[x][y].produces < 200
-				? 'bg-red-600'
-				: state.map[x][y].produces < 500
-					? 'bg-yellow-600'
-					: state.map[x][y].produces < 1000
-						? 'bg-yellow-300'
-						: state.map[x][y].produces < 1500
-							? 'bg-green-400'
-							: 'bg-green-900'
+		? state.map[x][y].produces < 1
+			? 'bg-red-600'
+			: state.map[x][y].produces < 700
+				? 'bg-yellow-300'
+				: state.map[x][y].produces < 1500
+					? 'bg-green-400'
+					: 'bg-green-900'
 		: type == 'OIL_D'
 			? 'bg-green-300'
 			: type == 'OIL_M'
@@ -81,12 +79,32 @@
 		.selectedCell.x == x &&
 	state.selectedCell.y == y &&
 	state.selectedCell.enabled
-		? 'animate-pulse'
-		: 'animate-none'} border-0 border-black text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
-	style="corner: rgb({Math.max(2000 - state.map[x][y].produces, 0) / 10},{Math.min(
-		255,
-		state.map[x][y].produces
-	) / 1.5},65);"
+		? 'animate-pulse border-red-500 border-5'
+		: 'animate-none border-black'} border-0 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
 >
+	<img
+		src={wellhead}
+		class="absolute z-10 inset-1 h-3/4 w-3/4 object-cover object-center pointer-events-none {state
+			.map[x][y].drilled && !state.map[x][y].capped
+			? 'visible'
+			: 'invisible'}"
+		alt="well"
+	/>
+	<img
+		src={wellcap}
+		class="absolute z-10 inset-0 h-full w-full object-cover object-center pointer-events-none {state
+			.map[x][y].capped && !state.map[x][y].solar
+			? 'visible'
+			: 'invisible'}"
+		alt="well"
+	/>
+	<img
+		src={solar}
+		class="absolute z-10 -inset-[1/2] h-full w-full object-cover object-center pointer-events-none {state
+			.map[x][y].solar
+			? 'visible'
+			: 'invisible'}"
+		alt="well"
+	/>
 	{textContent == '' && false ? `${x},${y}` : textContent}
 </div>
