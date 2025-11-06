@@ -6,10 +6,13 @@
 	export let description: string;
 	export let scaleButtons: boolean = false;
 	export let cost: number;
-	export let callback: () => void;
+	export let quantity: number = 1;
+	let quantityInput: string = '';
+	export let callback: (quantity: number) => void;
 	export let colspan: number | undefined = undefined;
 	export let rowspan: number | undefined = undefined;
 	export let color: string = 'border-red-500 border-2';
+	$: canAfford = state.cash > cost * quantity;
 </script>
 
 <div
@@ -41,33 +44,59 @@
 		<button
 			class="text-md font-bold text-lime-700 bg-white/50 py-0 mb-2 px-4 hover:bg-white cursor-pointer rounded-lg"
 			on:click={() => {
-				callback();
+				callback(1);
 			}}
 			disabled={ephemeralState.cash < cost}>BUY</button
 		>
 	{:else}
 		<div class="flex flex-row flex-nowrap items-center justify-between">
-			<Subinfobutton
-				quantity={util.value.thousand}
-				{cost}
-				callback={() => {
-					callback();
+			<input
+				name="quantity"
+				type="text"
+				inputmode="numeric"
+				pattern="\d*"
+				placeholder="enter value"
+				aria-label="Quantity"
+				bind:value={quantityInput}
+				on:change={() => {
+					try {
+						let newV = parseInt(
+							quantityInput
+								.toLowerCase()
+								.replaceAll('.', '')
+								.replaceAll(',', '')
+								.replaceAll('k', '000')
+								.replaceAll('m', '000000')
+								.replaceAll('b', '000000000')
+								.replaceAll('t', '000000000000')
+						);
+						if (!isNaN(newV) && newV - 1 > -1) {
+							quantity = newV;
+						}
+					} catch {}
 				}}
+				class="min-w-6 max-w-12 bg-cyan-100 text-black border-1 border-black"
 			/>
-			<Subinfobutton
-				quantity={util.value.million}
-				{cost}
-				callback={() => {
-					callback();
+			<button
+				class="text-sm font-bold text-black hover:bg-blue-100 bg-cyan-100 transition-all duration-200 rounded-lg mx-1 px-1 cursor-pointer {canAfford
+					? 'pointer-events-auto'
+					: 'pointer-events-none opacity-50'}"
+				on:click={() => {
+					callback(quantity);
 				}}
-			/>
-			<Subinfobutton
-				quantity={util.value.billion}
-				{cost}
-				callback={() => {
-					callback();
-				}}
-			/>
+				disabled={!canAfford}
+			>
+				{util.formatHumanReadableNumber(quantity)}
+				<div
+					class="text-sm font-light {cost > 0.0
+						? 'text-red-700'
+						: cost == 0.0
+							? 'text-black'
+							: 'text-green-600'}"
+				>
+					${util.formatHumanReadableNumber(cost * quantity)}
+				</div>
+			</button>
 		</div>
 	{/if}
 </div>
