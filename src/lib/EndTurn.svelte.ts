@@ -10,7 +10,7 @@ function random(from: number, to: number) {
 	return Math.random() * (to - from) + from;
 }
 function chance(percent: number) {
-	return random(0, 100) > percent;
+	return random(0, 100) < percent;
 }
 
 export async function endTurn() {
@@ -19,11 +19,16 @@ export async function endTurn() {
 	endTurnLog.push('End of turn ' + state.quarter);
 	//calculate new production
 	state.production = 0;
+	let loss = state.quarter < 12 ? 0.9 : 0.95;
 	for (let i = 0; i < state.map.length; i++) {
 		for (let j = 0; j < state.map[i].length; j++) {
-			if (state.map[i][j].drilled && (state.map[i][j].leased || state.map[i][j].owned)) {
-				state.production += state.map[i][j].produces * 0.5;
-				state.map[i][j].produces *= 0.5;
+			if (
+				!state.map[i][j].capped &&
+				state.map[i][j].drilled &&
+				(state.map[i][j].leased || state.map[i][j].owned)
+			) {
+				state.production += state.map[i][j].produces;
+				state.map[i][j].produces *= loss;
 			}
 		}
 	}
@@ -67,13 +72,13 @@ export async function endTurn() {
 	let oilShock: number;
 	if (chance(15)) {
 		if (chance(50)) {
-			oilShock = random(state.oilPrice * 19, state.oilPrice * 21);
+			oilShock = random(state.oilPrice * 1.5, state.oilPrice * 2);
 			endTurnLog.push(
 				'Oil shock! The price of oil has increased dramatically by $' + oilShock
 			);
 			state.oilPrice += oilShock;
 		} else {
-			oilShock = random(state.oilPrice * 19, state.oilPrice * 21);
+			oilShock = random(state.oilPrice * 0.5, state.oilPrice * 0.75);
 			endTurnLog.push('Oil shock! The price of oil has collapsed by $' + oilShock);
 			state.oilPrice -= oilShock;
 		}
@@ -105,6 +110,7 @@ export async function endTurn() {
 			'Shareholders are pleased with your recent performance. They have increased their confidence in your leadership.'
 		);
 	}
+	console.log(endTurnLog);
 	await sleep(10000);
 	state.quarter += 1;
 	resetState();
