@@ -61,12 +61,13 @@
 		<Infobutton
 			label="Repay Debt"
 			description="Spend cash to decrease debt"
-			cost={0}
+			cost={1}
 			color="bg-teal-600"
 			colspan={2}
 			scaleButtons={true}
-			callback={() => {
-				alert('wow!');
+			callback={(quantity: number) => {
+				state.cash -= quantity;
+				state.debt -= quantity;
 			}}
 		/>
 		<Infobutton
