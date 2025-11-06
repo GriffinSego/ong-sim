@@ -80,10 +80,10 @@
 				label="CONVERT TO SOLAR ($20M)"
 				loadingTime={0}
 				callback={() => {
-					state.leasedWells -= 1;
-					state.map[state.selectedCell.x][state.selectedCell.y].leased = false;
+					state.map[state.selectedCell.x][state.selectedCell.y].solar = true;
 				}}
-				disabled={!state.map[state.selectedCell.x][state.selectedCell.y].leased}
+				disabled={!state.map[state.selectedCell.x][state.selectedCell.y].leased ||
+					!state.map[state.selectedCell.x][state.selectedCell.y].capped}
 			/>
 			<Button
 				label="END LEASE"
