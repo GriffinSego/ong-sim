@@ -1,4 +1,4 @@
-import { state, ephemeralState, saveState, resetState } from './State.svelte';
+import { state, ephemeralState, saveState, resetState, million } from './State.svelte';
 
 async function sleep(d: number) {
 	function sr(resolve: (value: unknown) => void, reject: (value: unknown) => void) {
@@ -29,6 +29,8 @@ export async function endTurn() {
 			) {
 				state.production += state.map[i][j].produces;
 				state.map[i][j].produces *= loss;
+			} else if (state.map[i][j].solar) {
+				state.production += million(3);
 			}
 		}
 	}
@@ -38,7 +40,11 @@ export async function endTurn() {
 	//calculate changes
 	endTurnLog.push('Revenue received: ' + state.oilPrice * 0.75 * state.production);
 	state.revenue = state.oilPrice * 0.75 * state.production;
-	state.cash += state.revenue;
+	//apply dividends
+	let dividends = state.revenue * state.dividendPercentage * 0.01;
+	state.shareholderSentiment += state.dividendPercentage / 10;
+	state.cash += state.revenue - dividends;
+	endTurnLog.push('paid out ' + dividends + ' in dividends');
 	state.cash -= 100000 * state.leasedWells * state.mergerCostMultiplier;
 	endTurnLog.push(
 		'Paid out for well leasing: ' + 100000 * state.leasedWells * state.mergerCostMultiplier
@@ -58,6 +64,7 @@ export async function endTurn() {
 		'Shareholders have taken note of these recent updates and are ' +
 			(shareholderBoost > shareholderReduction ? 'bullish' : 'bearish')
 	);
+	//adjust share price
 	//oil price swings
 	let oilPriceSwing: number;
 	if (state.quarter < 7) {
@@ -88,6 +95,19 @@ export async function endTurn() {
 	//pay out interest
 	endTurnLog.push('Interest on debt paid: $' + state.debt * state.interestRate);
 	state.cash -= state.debt * state.interestRate;
+	//pay maintenance, operating, and leasing costs
+	//lease land payments
+	for (let i = 0; i < state.map.length; i++) {
+		for (let j = 0; j < state.map[i].length; j++) {
+			if (state.map[i][j].leased && state.map[i][j].drilled && !state.map[i][j].capped) {
+				state.cash -= 200000;
+			} else if (state.map[i][j].leased && state.map[i][j].solar) {
+				state.cash -= 150000;
+			} else if (state.map[i][j].leased) {
+				state.cash -= 100000;
+			}
+		}
+	}
 	//handle negative balance
 	if (state.cash < 0) {
 		endTurnLog.push(

@@ -73,23 +73,25 @@
 		<Infobutton
 			label="Stock Buyback"
 			description="Spend cash to decrease shares"
-			cost={0}
+			cost={1}
 			color="bg-teal-600"
 			colspan={2}
 			scaleButtons={true}
-			callback={() => {
-				alert('wow!');
+			callback={(quantity: number) => {
+				state.cash -= quantity;
+				state.shares -= quantity;
 			}}
 		/>
 		<Infobutton
 			label="Raise Funds"
 			description="+ Shares & cash"
-			cost={0}
+			cost={-1}
 			color="bg-teal-600"
 			rowspan={2}
 			scaleButtons={true}
-			callback={() => {
-				alert('wow!');
+			callback={(quantity: number) => {
+				state.cash += quantity;
+				state.shares += quantity;
 			}}
 		/>
 		<Infobutton
@@ -99,8 +101,10 @@
 			color="bg-teal-600"
 			colspan={2}
 			scaleButtons={true}
-			callback={() => {
-				alert('wow!');
+			callback={(quantity: number) => {
+				state.dividendPercentage += quantity;
+				if (state.dividendPercentage > 100) state.dividendPercentage = 100;
+				if (state.dividendPercentage < 0) state.dividendPercentage = 0;
 			}}
 		/>
 		<Infobutton
@@ -110,8 +114,10 @@
 			color="bg-teal-600"
 			colspan={2}
 			scaleButtons={true}
-			callback={() => {
-				alert('wow!');
+			callback={(quantity: number) => {
+				state.dividendPercentage -= quantity;
+				if (state.dividendPercentage > 100) state.dividendPercentage = 100;
+				if (state.dividendPercentage < 0) state.dividendPercentage = 0;
 			}}
 		/>
 		<div
