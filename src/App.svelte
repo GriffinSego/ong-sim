@@ -10,6 +10,7 @@
 	import Scene6 from './lib/Scene6.svelte';
 	import Scene7 from './lib/Scene7.svelte';
 	import Scene8 from './lib/Scene8.svelte';
+	import Scene9 from './lib/Scene9.svelte';
 	import { state } from './lib/State.svelte';
 </script>
 
@@ -41,6 +42,9 @@
 	{/if}
 	{#if state.scene === 8}
 		<Scene8 />
+	{/if}
+	{#if state.scene === 9}
+		<Scene9 />
 	{/if}
 </main>
 
