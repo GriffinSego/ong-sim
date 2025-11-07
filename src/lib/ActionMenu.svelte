@@ -38,10 +38,10 @@
 		<Infographic label="No. Shares" value={300000000} change={0} type="number" />
 		<Infographic
 			label="Dividend"
-			value={999}
+			value={state.dividendPercentage}
 			quantifier="per share"
 			change={0}
-			type="currency"
+			type="percent"
 		/>
 		<Infographic label="Payout ratio" value={999} change={0} type="number" />
 		<Infographic
