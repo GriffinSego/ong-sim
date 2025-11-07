@@ -41,8 +41,9 @@ export async function endTurn() {
 	endTurnLog.push('Revenue received: ' + state.oilPrice * 0.75 * state.production);
 	state.revenue = state.oilPrice * 0.75 * state.production * 90;
 	//apply dividends
-	let dividends = state.revenue * state.dividendPercentage * 0.01;
-	state.shareholderSentiment += state.dividendPercentage / 10;
+	let dividends = state.dividend * state.shares;
+	state.revenue -= dividends;
+	state.shareholderSentiment += state.dividend / 10;
 	state.cash += state.revenue - dividends;
 	endTurnLog.push('paid out ' + dividends + ' in dividends');
 	state.cash -= 100000 * state.leasedWells * state.mergerCostMultiplier;
@@ -51,12 +52,9 @@ export async function endTurn() {
 	);
 	endTurnLog.push('Cash in the bank: ' + state.cash);
 	//pay out dividends, adjust shareholder sentiment
-	endTurnLog.push(
-		'Paid dividends: $' + state.shares * (state.sharePrice * state.dividendPercentage)
-	);
-	state.cash -= state.shares * (state.sharePrice * state.dividendPercentage);
-	let shareholderBoost =
-		random(0, 2) * state.dividendPercentage * state.shareholderSentimentMultiplier;
+	endTurnLog.push('Paid dividends: $' + state.shares * (state.sharePrice * state.dividend));
+	state.cash -= state.shares * (state.sharePrice * state.dividend);
+	let shareholderBoost = random(0, 2) * state.dividend * state.shareholderSentimentMultiplier;
 	state.shareholderSentiment += shareholderBoost;
 	state.shareholderSentiment -= state.debt / state.revenue; //debt/rev reflects how much debt is relative to revenue which makes shareholders anxious
 	let shareholderReduction = state.debt / state.revenue;

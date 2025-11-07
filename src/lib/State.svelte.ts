@@ -127,7 +127,7 @@ type State = {
 	sharePrice: number;
 	shares: number;
 	interestRate: number;
-	dividendPercentage: number;
+	dividend: number;
 	operatingCostMultiplier: number;
 	mergerCostMultiplier: number;
 	capexCostMultiplier: number;
@@ -184,7 +184,7 @@ export const state = $state<State>({
 	sharePrice: 150.0,
 	shares: million(3), //total number of shares in company
 	interestRate: 0.02,
-	dividendPercentage: 0.035,
+	dividend: 5.25,
 	operatingCostMultiplier: 1.0,
 	mergerCostMultiplier: 1.0,
 	capexCostMultiplier: 1.0,
