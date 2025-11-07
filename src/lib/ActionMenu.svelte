@@ -41,6 +41,7 @@
 			value={state.dividend}
 			quantifier="per share"
 			change={0}
+			decimalPlaces={2}
 			type="currency"
 		/>
 		<Infographic label="Payout ratio" value={999} change={0} type="number" />

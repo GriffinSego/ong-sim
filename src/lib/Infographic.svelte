@@ -3,6 +3,7 @@
 	export let label: string;
 	export let value: number;
 	export let quantifier: string | undefined = undefined;
+	export let decimalPlaces: number = 1;
 	export let change: number;
 	export let type: 'number' | 'percent' | 'currency' = 'number';
 	export let colspan: number | undefined = undefined;
@@ -20,9 +21,10 @@
 		{label}
 	</div>
 	<div class="text-3xl font-extrabold text-black grow mt-2 -mb-2">
-		{type == 'currency' ? '$' : ''}{util.formatHumanReadableNumber(value)}{type == 'percent'
-			? '%'
-			: ''}
+		{type == 'currency' ? '$' : ''}{util.formatHumanReadableNumber(
+			value,
+			decimalPlaces ?? 1
+		)}{type == 'percent' ? '%' : ''}
 	</div>
 	{#if quantifier}
 		<div class="text-xs font-normal text-black grow uppercase w-full">
