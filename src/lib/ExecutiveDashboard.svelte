@@ -16,10 +16,10 @@
 	/>
 	<Infographic
 		label="Net Production"
-		quantifier="Barrels/day"
+		quantifier="BOE/month"
 		value={state.production}
 		change={ephemeralState.production - state.production}
-		type="currency"
+		type="number"
 	/>
 	<Infographic
 		label="Revenue"
@@ -57,9 +57,9 @@
 	<Infographic label="R&D Cost" value={state.rndCostMultiplier * 1} change={0} type="percent" />
 	<Infographic
 		label="Rig utilization"
-		value={(state.rigsInUse / 3 / state.rigs) * 100}
-		change={-((state.rigsInUse / 3 / state.rigs) * 100)}
+		value={(state.rigsInUse / state.rigs) * 100}
+		change={-(state.rigsInUse / state.rigs) * 100}
 		type="percent"
 	/>
-	<Infographic label="Total rigs" value={state.rigs} change={0} type="number" />
+	<Infographic label="Total rigs" value={Math.round(state.rigs / 3)} change={0} type="number" />
 </div>

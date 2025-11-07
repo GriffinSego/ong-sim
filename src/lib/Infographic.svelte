@@ -36,8 +36,8 @@
 				? 'text-black'
 				: 'text-green-600'}"
 	>
-		{change < 0.0 ? '-' : '+'}{type == 'currency' ? '$' : ''}{type == 'percent'
-			? '%'
-			: ''}{util.formatHumanReadableNumber(change)} NEXT QTR
+		{change < 0.0 ? '-' : '+'}{type == 'currency' ? '$' : ''}{util.formatHumanReadableNumber(
+			Math.abs(change)
+		)}{type == 'percent' ? '%' : ''} NEXT QTR
 	</div>
 </div>

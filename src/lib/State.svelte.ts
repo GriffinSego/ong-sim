@@ -172,7 +172,7 @@ export const state = $state<State>({
 	production: million(8.5), //bbl per quarter, 1/4 of 34m bbl per year
 	operatingCost: 0,
 	cyberRisk: 0.2,
-	rigs: 1,
+	rigs: 3,
 	spills: 0,
 	rigsInUse: 0,
 	wells: 37,

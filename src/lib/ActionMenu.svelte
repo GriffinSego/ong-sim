@@ -185,7 +185,8 @@
 			cost={25 * Util.value.million}
 			color="bg-fuchsia-700"
 			callback={() => {
-				alert('wow!');
+				state.cash -= 25 * Util.value.million;
+				state.rigs += 3;
 			}}
 		/>
 		<Infobutton
