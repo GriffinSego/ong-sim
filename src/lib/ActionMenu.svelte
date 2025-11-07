@@ -38,22 +38,22 @@
 		<Infographic label="No. Shares" value={state.shares} change={0} type="number" />
 		<Infographic
 			label="Dividend"
-			value={state.dividendPercentage}
+			value={state.dividend}
 			quantifier="per share"
 			change={0}
-			type="percent"
+			type="currency"
 		/>
 		<Infographic label="Payout ratio" value={999} change={0} type="number" />
 		<Infographic
 			label="Current EPS"
-			value={999}
+			value={state.revenue / state.shares}
 			quantifier="Current qtr"
 			change={0}
 			type="number"
 		/>
 		<Infographic
 			label="Trailing EPS"
-			value={999}
+			value={state.revenue / state.shares}
 			quantifier="Last 4 qtrs"
 			change={0}
 			type="number"
@@ -102,9 +102,8 @@
 			colspan={2}
 			scaleButtons={true}
 			callback={(quantity: number) => {
-				state.dividendPercentage += quantity;
-				if (state.dividendPercentage > 100) state.dividendPercentage = 100;
-				if (state.dividendPercentage < 0) state.dividendPercentage = 0;
+				state.dividend += quantity;
+				if (state.dividend < 0) state.dividend = 0;
 			}}
 		/>
 		<Infobutton
@@ -115,9 +114,8 @@
 			colspan={2}
 			scaleButtons={true}
 			callback={(quantity: number) => {
-				state.dividendPercentage -= quantity;
-				if (state.dividendPercentage > 100) state.dividendPercentage = 100;
-				if (state.dividendPercentage < 0) state.dividendPercentage = 0;
+				state.dividend -= quantity;
+				if (state.dividend < 0) state.dividend = 0;
 			}}
 		/>
 		<div
