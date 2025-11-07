@@ -8,8 +8,7 @@
 <Banner
 	label="The price of oil is $60/bbl (average revenue of $45, or 75% of the
 WTI price). You have 1 rig (which can be used 3x per quarter) and 37 wells, a stock price of $150 per share in a market with 3M shares and market cap of $450M, annual dividend is $5.25/share (3.5%),
-trailing 12 months revenue of $148M, and $57M in earnings with EPS of $18. Debt is currently $140M; cash on hand is $13M and CAPEX is
-$900m. Production last year was 8.5MBOE/day."
+trailing 12 months revenue of $148M, and $57M in earnings with EPS of $18. Debt is currently $140M; cash on hand is $13M. Production last year was 8.5MBOE/day."
 	image={exassimg}
 	visible={state.scene == 3}
 ></Banner>
