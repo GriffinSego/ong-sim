@@ -71,6 +71,8 @@ export function composeMap() {
 				starterTiles++;
 				// console.log('Placing starter tile at (' + x + ', ' + y + ') where land is ' + type);
 			}
+			state.wells = starterTiles;
+			ephemeralState.wells = starterTiles;
 			const productionPRNG = noise2D(i / 10, j / 10);
 			map[i].push({
 				drilled: placedStarter,
@@ -163,7 +165,7 @@ export const state = $state<State>({
 	gameStart: Date.now(),
 	map: [],
 	scene: 1,
-	landmen: 10,
+	landmen: 3,
 	leasedWells: 0,
 	quarter: 1,
 	oilPrice: 60,
@@ -177,7 +179,7 @@ export const state = $state<State>({
 	rigs: 3,
 	spills: 0,
 	rigsInUse: 0,
-	wells: 37,
+	wells: 6,
 	hacks: 0,
 	wellsVulnerable: 410,
 	fatalities: 0,
@@ -208,7 +210,7 @@ export const state = $state<State>({
 });
 export const ephemeralState = $state({
 	oilPrice: 60,
-	landmen: 10,
+	landmen: 3,
 	cash: 1300000000,
 	debt: 13000000000,
 	revenue: 0,
