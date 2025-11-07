@@ -39,7 +39,7 @@ export async function endTurn() {
 	endTurnLog.push('Produced barrels of oil this quarter: ' + state.production);
 	//calculate changes
 	endTurnLog.push('Revenue received: ' + state.oilPrice * 0.75 * state.production);
-	state.revenue = state.oilPrice * 0.75 * state.production;
+	state.revenue = state.oilPrice * 0.75 * state.production * 90;
 	//apply dividends
 	let dividends = state.revenue * state.dividendPercentage * 0.01;
 	state.shareholderSentiment += state.dividendPercentage / 10;
