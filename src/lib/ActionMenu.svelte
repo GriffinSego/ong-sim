@@ -35,7 +35,7 @@
 	</div>
 	<!--Content begins here -->
 	{#if selectedTab === 'fin'}
-		<Infographic label="No. Shares" value={300000000} change={0} type="number" />
+		<Infographic label="No. Shares" value={state.shares} change={0} type="number" />
 		<Infographic
 			label="Dividend"
 			value={state.dividendPercentage}
