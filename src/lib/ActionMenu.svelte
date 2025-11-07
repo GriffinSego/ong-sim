@@ -142,7 +142,7 @@
 		/>
 		<Infographic
 			label="Landmen"
-			value={state.landmen}
+			value={Math.round(state.landmen / 3)}
 			change={ephemeralState.landmen - state.landmen}
 			type="number"
 		/>
@@ -212,7 +212,7 @@
 		<Infobutton
 			label="Landman"
 			description="/QTR"
-			cost={250 * Util.value.million}
+			cost={100 * Util.value.thousand}
 			color="bg-fuchsia-700"
 			callback={() => {
 				alert('wow!');
