@@ -42,10 +42,10 @@
 			{cost > 0.0 ? '' : cost == 0.0 ? '' : ''}${util.formatHumanReadableNumber(cost)}
 		</div>
 		<button
-			class="text-md font-bold py-0 mb-2 px-4 cursor-pointer rounded-lg {ephemeralState.cash <
+			class="text-md font-bold py-0 mb-2 px-4 duration-300 transition-all rounded-lg {ephemeralState.cash <
 			cost
 				? 'opacity-50 bg-slate-400 text-lime-700/50'
-				: 'opacity-100 bg-white/50 hover:bg-white text-lime-700'}"
+				: 'opacity-100 bg-stone-100 hover:bg-white active:bg-lime-700 active:text-white text-lime-700 cursor-pointer'}"
 			on:click={() => {
 				callback(1);
 			}}
