@@ -46,6 +46,10 @@
 	{#if state.scene === 9}
 		<Scene9 />
 	{/if}
+	<a
+		class="fixed right-1 top-1 h-8 w-16 rounded-2xl max-w-16 bg-red-600 z-50 text-xs text-center p-2"
+		href="./">restart</a
+	>
 </main>
 
 <style>
