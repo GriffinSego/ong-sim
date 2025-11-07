@@ -59,7 +59,7 @@ export function composeMap() {
 				type = x > 8 ? 'OIL_M' : 'OIL_D';
 			}
 			let placedStarter = false;
-			const numStarterTimes = 6;
+			const numStarterTimes = 7;
 			const chanceStarterTile = 1 - numStarterTimes / 153;
 			const showAllMap = false;
 			if (
