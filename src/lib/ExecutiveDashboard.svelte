@@ -16,7 +16,7 @@
 	/>
 	<Infographic
 		label="Net Production"
-		quantifier="BOE/month"
+		quantifier="BOE/day"
 		value={state.production}
 		change={ephemeralState.production - state.production}
 		type="number"
