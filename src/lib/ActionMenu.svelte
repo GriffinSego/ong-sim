@@ -46,16 +46,18 @@
 		<Infographic label="Payout ratio" value={999} change={0} type="number" />
 		<Infographic
 			label="Current EPS"
-			value={state.revenue / state.shares}
+			value={state.historicalEarnings[3] / state.shares}
 			quantifier="Current qtr"
 			change={0}
 			type="number"
 		/>
 		<Infographic
 			label="Trailing EPS"
-			value={state.revenue / state.shares}
+			value={state.historicalEarnings.slice(0, 4).reduce((a, b) => a + b, 0) / state.shares}
 			quantifier="Last 4 qtrs"
-			change={0}
+			change={(4 / 3) *
+				(state.historicalEarnings.slice(0, 3).reduce((a, b) => a + b, 0) / state.shares) -
+				state.historicalEarnings.slice(0, 4).reduce((a, b) => a + b, 0) / state.shares}
 			type="number"
 		/>
 		<Infobutton

@@ -40,6 +40,9 @@ export async function endTurn() {
 	//calculate changes
 	endTurnLog.push('Revenue received: ' + state.oilPrice * 0.75 * state.production);
 	state.revenue = state.oilPrice * 0.75 * state.production * 90;
+	//earnings is instantaneous value of state.revenue here
+	state.historicalEarnings.shift();
+	state.historicalEarnings.push(Math.round(state.revenue + 0.0001));
 	//apply dividends
 	let dividends = state.dividend * state.shares;
 	state.revenue -= dividends;

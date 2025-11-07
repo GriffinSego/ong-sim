@@ -112,6 +112,7 @@ type State = {
 	cash: number;
 	debt: number;
 	revenue: number;
+	historicalEarnings: number[];
 	production: number;
 	operatingCost: number;
 	cyberRisk: number;
@@ -169,6 +170,7 @@ export const state = $state<State>({
 	cash: million(13),
 	debt: million(140),
 	revenue: million(3 * 12.167), //36.5m revenue for first quarter, 1/4 of 146m annual revenue as per v7 spec
+	historicalEarnings: [million(37), million(37), million(37), million(37)],
 	production: million(8.5), //bbl per quarter, 1/4 of 34m bbl per year
 	operatingCost: 0,
 	cyberRisk: 0.2,
