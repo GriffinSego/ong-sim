@@ -137,7 +137,7 @@
 			type="number"
 		/>
 		<Infographic
-			label="Production"
+			label="Extraction"
 			value={state.production}
 			change={ephemeralState.production - state.production}
 			type="number"
