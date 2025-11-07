@@ -44,7 +44,16 @@
 			decimalPlaces={2}
 			type="currency"
 		/>
-		<Infographic label="Payout ratio" value={999} change={0} type="number" />
+		<Infographic
+			label="Payout ratio"
+			value={state.dividend /
+				((4 / 3) *
+					(state.historicalEarnings.slice(0, 3).reduce((a, b) => a + b, 0) /
+						state.shares) -
+					state.historicalEarnings.slice(0, 4).reduce((a, b) => a + b, 0) / state.shares)}
+			change={0}
+			type="percent"
+		/>
 		<Infographic
 			label="Current EPS"
 			value={state.historicalEarnings[3] / state.shares}
